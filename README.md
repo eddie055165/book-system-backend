@@ -1,6 +1,6 @@
 # Book System Back
 
-這是一個基於 Spring Boot 的書籍管理系統後端應用程式。它提供了用戶管理、困存管理和借閱記錄管理的 API。
+這是一個基於 Spring Boot 的書籍管理系統後端應用程式。它提供了用戶管理、庫存管理和借閱記錄管理的 API。
 
 ## 功能
 
@@ -24,6 +24,7 @@
     ```
 
 3. 如果db要連本地的mysql，請確保本地的Mysql可以正常啟動，並修正application.properties
+   ```bash
    spring.application.name=book-backend
    spring.jpa.hibernate.ddl-auto=update
    spring.datasource.url=jdbc:mysql://localhost:3306/${yourDatabase}
@@ -34,12 +35,14 @@
    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
    spring.jpa.defer-datasource-initialization=true
    spring.sql.init.mode=always
+   ```
 
    例如
+   ```bash
    spring.datasource.url=jdbc:mysql://localhost:3306/test0207
    spring.datasource.username=root
    spring.datasource.password=1qaz@WSX3edc
-
+   ```
 
 
 ## 運行應用程式
