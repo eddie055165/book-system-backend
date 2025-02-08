@@ -25,14 +25,18 @@ public class BorrowingRecordService {
     @Autowired
     private UserRepository userRepository;
 
+
+
+
     @Transactional
     public void borrowBook(Long userId, Long inventoryId) {
         Optional<Inventory> inventoryOpt = inventoryRepository.findById(inventoryId);
         if (!inventoryOpt.isPresent()) {
             throw new RuntimeException("Inventory not found for id: " + inventoryId);
         }
-
         Inventory inventory = inventoryOpt.get();
+        System.out.println("Inventory status: " + inventory.getStatus());
+
         if (inventory.getStatus() != Inventory.Status.AVAILABLE) {
             throw new RuntimeException("Inventory is not available for borrowing");
         }
@@ -40,21 +44,32 @@ public class BorrowingRecordService {
         BorrowingRecord.BorrowingRecordId recordId = new BorrowingRecord.BorrowingRecordId();
         recordId.setUserId(userId);
         recordId.setInventoryId(inventoryId);
-
         Optional<BorrowingRecord> existingRecord = borrowingRecordRepository.findById(recordId);
-        if (existingRecord.isPresent()) {
-            throw new RuntimeException("This book is already borrowed by the user");
+        if (inventory.getStatus() == Inventory.Status.AVAILABLE) {
+            inventory.setStatus(Inventory.Status.BORROWED);
+            inventoryRepository.save(inventory);
+        } else if (inventory.getStatus() == Inventory.Status.BORROWED) {
+            throw new RuntimeException("Inventory is not available for borrowing");
         }
 
         inventory.setStatus(Inventory.Status.BORROWED);
         inventoryRepository.save(inventory);
 
-        BorrowingRecord record = new BorrowingRecord();
         Optional<User> userOpt = userRepository.findById(userId);
-        if (!userOpt.isPresent()) { throw new RuntimeException("User not found for id: " + userId); } User user = userOpt.get();
+        if (!userOpt.isPresent()) {
+            throw new RuntimeException("User not found for id: " + userId);
+        }
+        User user = userOpt.get();
+        BorrowingRecord record = new BorrowingRecord();
+        record.setId(recordId);
+        record.setUser(user);
+        record.setInventory(inventory);
+        record.setBorrowingTime(LocalDateTime.now());
 
-        record.setId(recordId); record.setUser(user); // <<==== 新增設定user record.setInventory(inventory); // 設置 inventory record.setBorrowingTime(LocalDateTime.now()); borrowingRecordRepository.save(record);
+        // 儲存借閱記錄
+        borrowingRecordRepository.save(record);
     }
+
 
     @Transactional
     public void returnBook(Long userId, Long inventoryId) {
