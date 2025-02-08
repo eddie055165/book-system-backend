@@ -44,6 +44,16 @@
             "name": "John Doe"
         }
         ```
+- **使用者登入**
+    - **方法**: POST
+    - **URL**: `/users/login`
+    - **Body** (JSON):
+        ```json
+        {
+              "phoneNumber": "1234567890",
+              "password": "password1"
+        }
+        ```
 
 - **取得所有用戶**
     - **方法**: GET
