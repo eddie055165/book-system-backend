@@ -45,7 +45,6 @@
    ```
    
 4. 最後請輸入以下sql語句來新增測資
-   ```sql
  INSERT INTO `user` (phone_number, password, user_name, registration_time, last_login_time)
 VALUES
     ('1234567890', 'password1', 'John Doe', '2023-01-01 10:00:00', '2023-01-10 12:00:00'),
@@ -65,7 +64,6 @@ INSERT INTO borrowing_record (user_id, inventory_id, borrowing_time, return_time
 VALUES
     (1, 1, '2023-01-10 12:00:00', '2023-01-20 12:00:00'),
     (2, 2, '2023-01-15 16:00:00', NULL);
-   ```
 
 ## 運行應用程式
 
