@@ -19,7 +19,7 @@
 2. Clone專案到本地端：
 
     ```bash
-    git clone https://github.com/eddie055165/book-system-back.git
+    git clone https://github.com/eddie055165/book-system-backend.git
     cd book-system-back
     ```
 
