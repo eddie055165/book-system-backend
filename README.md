@@ -45,7 +45,7 @@
    ```
    
 4. 最後請輸入以下sql語句來新增測資
-   ```bash
+   ```sql
    INSERT INTO user (phone_number, password, user_name, registration_time, last_login_time)
 VALUES
     ('1234567890', 'password1', 'John Doe', '2023-01-01 10:00:00', '2023-01-10 12:00:00'),
