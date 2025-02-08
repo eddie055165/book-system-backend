@@ -16,20 +16,22 @@
 
 ## 安裝
 
-1. Clone專案到本地端：
+1. 由於雲端資料庫已經架好了，請直接將本專案下載到local side並啟動即可，執行前台前，請確保後端api服務已順利啟動，謝謝您
+
+2. Clone專案到本地端：
 
     ```bash
     git clone [https://github.com/yourusername/book-system-back.git]
     cd book-system-back
     ```
 
-2. 建立 MySQL 資料庫：
+3. 建立 MySQL 資料庫：
 
     ```sql
     CREATE DATABASE booksystem;
     ```
 
-3. 修改 [application.properties] 文件，配置資料庫連線資訊：
+4. 修改 [application.properties] 文件，配置資料庫連線資訊：
 
     ```properties
     spring.datasource.url=jdbc:mysql://localhost:3306/booksystem
@@ -42,7 +44,7 @@
     spring.sql.init.mode=always
     ```
 
-4. 使用 Maven 編譯專案：
+5. 使用 Maven 編譯專案：
 
     ```bash
     mvn clean install
