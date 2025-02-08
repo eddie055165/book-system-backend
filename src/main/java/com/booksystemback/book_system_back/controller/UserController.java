@@ -51,6 +51,17 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getUserId")
+    public ResponseEntity<?> getUserIdByPhoneNumber(@RequestParam String phoneNumber) {
+        Optional<User> optionalUser = userRepository.findByPhoneNumber(phoneNumber);
+        if (optionalUser.isPresent()) {
+            return ResponseEntity.ok(optionalUser.get().getUserId());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+    }
+
+
     // 獲取所有使用者
     @GetMapping
     public List<User> getAllUsers() {
