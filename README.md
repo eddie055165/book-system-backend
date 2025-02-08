@@ -19,9 +19,28 @@
 2. Clone專案到本地端：
 
     ```bash
-    git clone [https://github.com/yourusername/book-system-back.git]
+    git clone [https://github.com/eddie055165/book-system-back.git]
     cd book-system-back
     ```
+
+3. 如果db要連本地的mysql，請確保本地的Mysql可以正常啟動，並修正application.properties
+   spring.application.name=book-backend
+   spring.jpa.hibernate.ddl-auto=update
+   spring.datasource.url=jdbc:mysql://localhost:3306/${yourDatabase}
+   spring.datasource.username=${yourUserName}
+   spring.datasource.password=${yourPassord}
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+   spring.jpa.show-sql=true
+   spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+   spring.jpa.defer-datasource-initialization=true
+   spring.sql.init.mode=always
+
+   例如
+   spring.datasource.url=jdbc:mysql://localhost:3306/test0207
+   spring.datasource.username=root
+   spring.datasource.password=1qaz@WSX3edc
+
+
 
 ## 運行應用程式
 
